@@ -37,11 +37,11 @@ const verifyJWT = (req, res, next) => {
 };
 // Route
 
-function run() {
+async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
 
-    client.connect();
+    await client.connect();
     const database = client.db("chef-blog").collection("all-data");
     const userdatabase = client.db("chef-blog").collection("user-data");
     const commentdatabase = client.db("chef-blog").collection("comment-data");
@@ -190,7 +190,7 @@ function run() {
     });
 
     // Send a ping to confirm a successful connection
-    client.db("admin").command({ ping: 1 });
+    await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
